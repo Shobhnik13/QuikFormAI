@@ -71,6 +71,7 @@ export const threads = pgTable("thread", {
 	dialogue_id: uuid("dialogue_id"),
 });
 
+
 export type Thread = InferModel<typeof threads>;
 
 export const threadsRelations = relations(threads, ({ one }) => ({
