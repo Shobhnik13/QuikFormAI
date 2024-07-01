@@ -1,0 +1,1 @@
+ALTER TABLE "fieldoptions" RENAME TO "field_options";

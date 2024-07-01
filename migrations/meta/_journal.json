@@ -8,6 +8,48 @@
       "when": 1718858978563,
       "tag": "0000_peaceful_stepford_cuckoos",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1719831767184,
+      "tag": "0001_nosy_the_anarchist",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1719832447839,
+      "tag": "0002_bent_romulus",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1719833006876,
+      "tag": "0003_jittery_sheva_callister",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1719833521144,
+      "tag": "0004_cultured_golden_guardian",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1719834375007,
+      "tag": "0005_high_annihilus",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1719834433441,
+      "tag": "0006_same_morlun",
+      "breakpoints": true
     }
   ]
 }

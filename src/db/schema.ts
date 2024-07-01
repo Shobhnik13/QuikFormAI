@@ -5,10 +5,21 @@ import {
 	primaryKey,
 	integer,
 	uuid,
+	boolean,
+	serial,
+	pgEnum,
 } from "drizzle-orm/pg-core";
 import type { AdapterAccount } from "@auth/core/adapters";
 import { InferModel, relations } from "drizzle-orm";
 
+export const formElements = pgEnum("field_type", [
+	"RadioGroup",
+	"Select",
+	"Input",
+	"Textarea",
+	"Switch",
+  ]);
+  
 export const users = pgTable("user", {
 	id: text("id").notNull().primaryKey(),
 	name: text("name"),
@@ -84,3 +95,73 @@ export const threadsRelations = relations(threads, ({ one }) => ({
 export const userRelations = relations(users, ({ many }) => ({
 	threads: many(threads),
 }));
+
+
+// schema designed by me
+
+
+
+export const forms = pgTable("forms", {
+	id: serial("id").primaryKey(),
+	name: text("name"),
+	description: text("description"),
+	userId: text("user_id"),
+	published: boolean("published"),
+  });
+  
+  export const formsRelations = relations(
+	forms,
+	({ many, one }) => ({
+	  questions: many(questions),
+	  user: one(users, {
+		fields: [forms.userId],
+		references: [users.id],
+	  })
+	})
+  );
+  
+
+
+  export const questions = pgTable("questions", {
+	id: serial("id").primaryKey(),
+	text: text("text"),
+	fieldType: formElements("field_type"),
+	formId: integer("form_id"),
+  });
+  
+  
+	export const fieldOptions = pgTable(
+		"field_options",
+		{
+		  id: serial("id").primaryKey(),
+		  text: text("text"),
+		  value: text("value"),
+		  questionId: integer("question_id"),
+		}
+	  );
+
+	  export const questionsRelations =
+	relations(
+	  questions,
+	  ({ one, many }) => ({
+		form: one(forms, {
+		  fields: [questions.formId],
+		  references: [forms.id],
+		}),
+		fieldOptions: many(fieldOptions),
+	
+	  })
+	);
+
+	  export const fieldOptionsRelations =
+		relations(
+		  fieldOptions,
+		  ({ one }) => ({
+			question: one(questions, {
+			  fields: [
+				fieldOptions.questionId,
+			  ],
+			  references: [questions.id],
+			}),
+		  })
+		);
